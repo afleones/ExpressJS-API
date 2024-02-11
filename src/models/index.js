@@ -3,7 +3,7 @@ const path = require('path');
 const Sequelize = require('sequelize'); // Importa Sequelize
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/database.js')[env]; // Asegúrate de que la ruta sea correcta
+const config = require('../../config/database.js')[env]; // Asegúrate de que la ruta sea correcta
 const db = {};
 
 // Asegúrate de crear la instancia de Sequelize después de haber definido `config`

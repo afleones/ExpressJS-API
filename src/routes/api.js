@@ -2,6 +2,9 @@
 const express = require('express');
 const route = express.Router();
 const usersController = require('../controllers/usersController');
+const entitiesController = require('../controllers/entitiesController');
+const rolesController = require('../controllers/rolesController');
+
 
 // Rutas para listar usuarios
 route.get('/users', usersController.getAllUsers);
@@ -12,8 +15,21 @@ route.post('/register', usersController.createUser);
 // Ruta para iniciar sesión
 route.post('/login', usersController.loginUser);
 
-// Ruta para iniciar sesión
-// Ruta para validar el token
-route.post('/validateToken', usersController.validateToken);
+// Ruta para registrar entidad
+route.post('/createentity', entitiesController.createEntity);
+
+// Ruta para crear roles
+route.post('/createrole', rolesController.createRole);
+
+// Ruta para asignar roles
+route.post('/assignRoleToUser', usersController.assignRoleToUser);
+
+// Ruta para dar acceso a entidad a usuario
+route.post('/assignEntityToUser', usersController.assignEntityToUser);
+
+// Ruta para crear tipos de identificacion
+route.post('/createTypeId', usersController.createTypeId);
+
+
 
 module.exports = route;

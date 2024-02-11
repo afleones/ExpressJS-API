@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Entity', // Nombre de la tabla de entidades, asegúrate de que coincida con el nombre definido en tu modelo y base de datos
+          model: 'Entities', // Nombre de la tabla de entidades, asegúrate de que coincida con el nombre definido en tu modelo y base de datos
           key: 'id'
         },
         onUpdate: 'CASCADE',

@@ -11,25 +11,41 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Relación muchos a muchos con EntityConnect a través de la tabla UsersEntities
-      User.belongsToMany(models.entity, { through: 'UsersEntities', foreignKey: 'userId', otherKey: 'entityId' });
+      User.belongsToMany(models.Entity, { through: 'UsersEntities', foreignKey: 'userId', otherKey: 'entityId' });
 
       // Asociación muchos a muchos con Role a través de la tabla UsersRoles
       User.belongsToMany(models.Role, { through: 'UsersRoles', foreignKey: 'userId', otherKey: 'roleId' });
-    
+      
+       // Define la relación con TypeId
+       User.belongsTo(models.TypeId, { foreignKey: 'typeId' });
     }
   }
   User.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
+    typeId: DataTypes.INTEGER,
+    numberId: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    dateOfBirth: { 
+      allowNull: false,
+      type: DataTypes.DATEONLY
+    },
     age: DataTypes.INTEGER,
-    Role: DataTypes.INTEGER,
+    email: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    username: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    password: DataTypes.STRING,
     StateUser: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
-      defaultValue: true, // Usar true para 1 o false para 0 como valor predeterminado
+      defaultValue: true,
     },
   }, {
     sequelize,

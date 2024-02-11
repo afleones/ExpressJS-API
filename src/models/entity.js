@@ -5,14 +5,20 @@ module.exports = (sequelize, DataTypes) => {
   class Entity extends Model {
     static associate(models) {
       // Relación muchos a muchos con User a través de la tabla UsersEntities
-      EntityConnect.belongsToMany(models.User, { through: 'UsersEntities', foreignKey: 'entityId', otherKey: 'userId' });    
+      Entity.belongsToMany(models.User, { through: 'UsersEntities', foreignKey: 'entityId', otherKey: 'userId' });    
     }
   }
 
   Entity.init({
-    nameEntity: DataTypes.STRING,
+    nameEntity: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     dbPrefix: DataTypes.STRING,
-    dbSufix: DataTypes.STRING,
+    dbSufix: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     tokenEntity: DataTypes.STRING,
     StateEntity: {
       type: DataTypes.BOOLEAN,
