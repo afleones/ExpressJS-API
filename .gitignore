@@ -1,0 +1,62 @@
+# Dependencias
+node_modules/
+
+# Archivos de entorno
+.env
+.env.*
+
+# Directorios de caché
+.cache/
+.tmp/
+dist/
+
+# Directorios de compilación
+build/
+lib/
+out/
+
+# Archivos de logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de editor y configuración del entorno de desarrollo
+.editorconfig
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Sistema de archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación y directorios
+*.o
+*.pyc
+__pycache__/
+
+# Directorios de paquetes
+jspm_packages/
+bower_components/
+
+# Archivos de imagen
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+
+# Archivos de audio y video
+*.mp3
+*.mp4
+*.wav
+
+# Documentación y archivos de diseño
+*.pdf
+*.doc
+*.docx
+*.ai
+*.psd
+*.pid
