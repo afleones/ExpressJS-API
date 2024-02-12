@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER
       },
       numberId: {
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.BIGINT
       },
       dateOfBirth: { 
         allowNull: true,

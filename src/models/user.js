@@ -16,8 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       // Asociación muchos a muchos con Role a través de la tabla UsersRoles
       User.belongsToMany(models.Role, { through: 'UsersRoles', foreignKey: 'userId', otherKey: 'roleId' });
       
-       // Define la relación con TypeId
-       User.belongsTo(models.TypeId, { foreignKey: 'typeId' });
+      // Define la relación con TypeId
+      User.belongsTo(models.TypeId, { foreignKey: 'typeId' });
+
+      // Asociación con los tokens de acceso personal
+      User.hasMany(models.PersonalAccessToken, { foreignKey: 'tokenableId', constraints: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' });
     }
   }
   User.init({
@@ -50,6 +53,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    tableName: 'Users',
+    timestamps: true,
   });
   return User;
 };

@@ -1,34 +1,44 @@
 // src/routes/api.js
 const express = require('express');
+const authController = require('../controllers/authController');
 const route = express.Router();
 const usersController = require('../controllers/usersController');
 const entitiesController = require('../controllers/entitiesController');
 const rolesController = require('../controllers/rolesController');
 
 
-// Rutas para listar usuarios
-route.get('/users', usersController.getAllUsers);
-
 // Ruta para registrar un nuevo usuario
-route.post('/register', usersController.createUser);
+route.post('/register', authController.createUser);
 
 // Ruta para iniciar sesión
-route.post('/login', usersController.loginUser);
+route.post('/login', authController.loginUser);
 
-// Ruta para registrar entidad
-route.post('/createentity', entitiesController.createEntity);
+// Middleware de autenticación para rutas protegidas
+route.use(authController.authenticateToken);
 
-// Ruta para crear roles
-route.post('/createrole', rolesController.createRole);
+    // Ruta para iniciar sesión
+    route.post('/logout', authController.logoutUser);
 
-// Ruta para asignar roles
-route.post('/assignRoleToUser', usersController.assignRoleToUser);
+    // Ruta para verificar token
+    route.post('/authenticateToken', authController.authenticateToken);
 
-// Ruta para dar acceso a entidad a usuario
-route.post('/assignEntityToUser', usersController.assignEntityToUser);
+    // Rutas para listar usuarios
+    route.get('/users', usersController.getAllUsers);
 
-// Ruta para crear tipos de identificacion
-route.post('/createTypeId', usersController.createTypeId);
+    // Ruta para registrar entidad
+    route.post('/createentity', entitiesController.createEntity);
+
+    // Ruta para crear roles
+    route.post('/createrole', rolesController.createRole);
+
+    // Ruta para asignar roles
+    route.post('/assignRoleToUser', usersController.assignRoleToUser);
+
+    // Ruta para dar acceso a entidad a usuario
+    route.post('/assignEntityToUser', usersController.assignEntityToUser);
+
+    // Ruta para crear tipos de identificacion
+    route.post('/createTypeId', usersController.createTypeId);
 
 
 

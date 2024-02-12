@@ -1,10 +1,20 @@
+require('dotenv').config();
+
+// Establecer la zona horaria predeterminada a Colombia
+process.env.TZ = 'America/Bogota';
+
 const express = require('express');
 const app = express();
 const mysql = require('mysql2/promise');
 const ApiRoutes = require('./routes/api');
 const path = require('path');
-require('dotenv').config();
 const multer = require('multer');
+
+// Importa startTokensVerification
+const { startVerificationTokens } = require('./controllers/authController');
+
+// Iniciar la verificación de tokens periódicamente al iniciar la aplicación
+startVerificationTokens();
 
 // Configuración de multer para manejar formularios
 const upload = multer();
